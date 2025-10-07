@@ -52,7 +52,6 @@
     "eslint-plugin-n": "^17.23.1",
     "eslint-plugin-prettier": "^5.5.4",
     "mocha": "^10.8.2",
-    "nyc": "^17.1.0",
     "oclif": "^4.22.27",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.2",
@@ -158,7 +157,6 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "test:plain": "mocha --forbid-only 'test/**/*.test.*ts'",
-    "test:nyc": "nyc --extension .ts mocha --forbid-only 'test/**/*.test.*ts'",
     "test": "npm run -s test:plain"
   },
   "types": "lib/index.d.ts",
