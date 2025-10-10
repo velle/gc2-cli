@@ -8,7 +8,6 @@
 import {input} from '@inquirer/prompts'
 import {Args, Command, Flags, ux} from '@oclif/core'
 import Configstore from 'configstore'
-import fetch from "node-fetch";
 import {GC2_SERVER_ADDRESS} from "../util/utils";
 import {exit} from "@oclif/core/lib/errors";
 

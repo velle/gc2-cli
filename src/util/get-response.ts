@@ -7,7 +7,6 @@
 
 import {Command, ux} from '@oclif/core'
 import chalk from 'chalk'
-import {Response} from 'node-fetch'
 import {exit} from '@oclif/core/lib/errors'
 
 /**
