@@ -117,7 +117,7 @@ USAGE
   $ gc2 client add [NAME] [-n <value>] [-d <value>] [-r <value>] [-H <value>] [-p] [-c] [-h]
 
 ARGUMENTS
-  NAME  Name of new client.
+  [NAME]  Name of new client.
 
 FLAGS
   -H, --homepage=<value>      Homepage of the application.
@@ -143,7 +143,7 @@ USAGE
   $ gc2 client drop [ID] [-h]
 
 ARGUMENTS
-  ID  Id of client.
+  [ID]  Id of client.
 
 FLAGS
   -h, --help  Show CLI help.
@@ -163,7 +163,7 @@ USAGE
   $ gc2 client get [ID] [-h]
 
 ARGUMENTS
-  ID  Client id
+  [ID]  Client id
 
 FLAGS
   -h, --help  Show CLI help.
@@ -183,7 +183,7 @@ USAGE
   $ gc2 client update [ID] [-n <value>] [-d <value>] [-r <value>] [-p <value>] [-p] [-c] [-h]
 
 ARGUMENTS
-  ID  Id of client.
+  [ID]  Id of client.
 
 FLAGS
   -c, --confirm               Client user must confirm the token exchange.
@@ -209,9 +209,9 @@ USAGE
   $ gc2 column add [TABLE] [COLUMN] [TYPE] [-h]
 
 ARGUMENTS
-  TABLE   Name of table.
-  COLUMN  Name of new column.
-  TYPE    Data type of new column.
+  [TABLE]   Name of table.
+  [COLUMN]  Name of new column.
+  [TYPE]    Data type of new column.
 
 FLAGS
   -h, --help  Show CLI help.
@@ -231,9 +231,9 @@ USAGE
   $ gc2 column default [TABLE] [COLUMN] [DEFAULT] [-h]
 
 ARGUMENTS
-  TABLE    Name of table.
-  COLUMN   Name of column.
-  DEFAULT  Default value. Set to 'null' for removing an already set value.
+  [TABLE]    Name of table.
+  [COLUMN]   Name of column.
+  [DEFAULT]  Default value. Set to 'null' for removing an already set value.
 
 FLAGS
   -h, --help  Show CLI help.
@@ -253,8 +253,8 @@ USAGE
   $ gc2 column drop [TABLE] [COLUMN] [-h]
 
 ARGUMENTS
-  TABLE   Name of table.
-  COLUMN  Name of column to drop.
+  [TABLE]   Name of table.
+  [COLUMN]  Name of column to drop.
 
 FLAGS
   -h, --help  Show CLI help.
@@ -274,8 +274,8 @@ USAGE
   $ gc2 column get [TABLE] [COLUMN] [-h]
 
 ARGUMENTS
-  TABLE   Name of table.
-  COLUMN  Name of column.
+  [TABLE]   Name of table.
+  [COLUMN]  Name of column.
 
 FLAGS
   -h, --help  Show CLI help.
@@ -295,9 +295,9 @@ USAGE
   $ gc2 column nullable [TABLE] [COLUMN] [NULLABLE] [-h]
 
 ARGUMENTS
-  TABLE     Name of table.
-  COLUMN    Name of column.
-  NULLABLE  (true|false) Set column to nullable.
+  [TABLE]     Name of table.
+  [COLUMN]    Name of column.
+  [NULLABLE]  (true|false) Set column to nullable.
 
 FLAGS
   -h, --help  Show CLI help.
@@ -317,9 +317,9 @@ USAGE
   $ gc2 column rename [TABLE] [COLUMN] [NAME] [-h]
 
 ARGUMENTS
-  TABLE   Name of table.
-  COLUMN  Existing name of column.
-  NAME    New name for column.
+  [TABLE]   Name of table.
+  [COLUMN]  Existing name of column.
+  [NAME]    New name for column.
 
 FLAGS
   -h, --help  Show CLI help.
@@ -339,9 +339,9 @@ USAGE
   $ gc2 column type [TABLE] [COLUMN] [TYPE] [-h]
 
 ARGUMENTS
-  TABLE   Name of table.
-  COLUMN  Name of column.
-  TYPE    New data type for column.
+  [TABLE]   Name of table.
+  [COLUMN]  Name of column.
+  [TYPE]    New data type for column.
 
 FLAGS
   -h, --help  Show CLI help.
@@ -361,7 +361,7 @@ USAGE
   $ gc2 connect [HOST] [-h] [-r]
 
 ARGUMENTS
-  HOST  Server host with scheme: http(s)
+  [HOST]  Server host with scheme: http(s)
 
 FLAGS
   -h, --help   Show CLI help.
@@ -383,10 +383,10 @@ USAGE
   $ gc2 constraint add [TABLE] [COLUMNS] [TYPE] [NAME] [-h] [-t <value>] [-e <value>] [-c <value>]
 
 ARGUMENTS
-  TABLE    Name of table.
-  COLUMNS  Columns for use in the constraint (comma separated).
-  TYPE     (primary|unique|foreign|check) Type of constraint.
-  NAME     Name for constraint.
+  [TABLE]    Name of table.
+  [COLUMNS]  Columns for use in the constraint (comma separated).
+  [TYPE]     (primary|unique|foreign|check) Type of constraint.
+  [NAME]     Name for constraint.
 
 FLAGS
   -h, --help  Show CLI help.
@@ -413,8 +413,8 @@ USAGE
   $ gc2 constraint drop [TABLE] [NAME] [-h]
 
 ARGUMENTS
-  TABLE  Name of table.
-  NAME   Name of constraint.
+  [TABLE]  Name of table.
+  [NAME]   Name of constraint.
 
 FLAGS
   -h, --help  Show CLI help.
@@ -434,8 +434,8 @@ USAGE
   $ gc2 constraint get [TABLE] [NAME] [-h]
 
 ARGUMENTS
-  TABLE  Name of table.
-  NAME   Name of constraint.
+  [TABLE]  Name of table.
+  [NAME]   Name of constraint.
 
 FLAGS
   -h, --help  Show CLI help.
@@ -455,8 +455,8 @@ USAGE
   $ gc2 foreign drop SCHEMAS [INCLUDE] [-h]
 
 ARGUMENTS
-  SCHEMAS  Schemas for dropping (comma separated).
-  INCLUDE  Only drop named foreign tables. Comma separated.
+  SCHEMAS    Schemas for dropping (comma separated).
+  [INCLUDE]  Only drop named foreign tables. Comma separated.
 
 FLAGS
   -h, --help  Show CLI help.
@@ -476,10 +476,10 @@ USAGE
   $ gc2 foreign import SERVER FROM TO [INCLUDE] [-h]
 
 ARGUMENTS
-  SERVER   Name of foreign server.
-  FROM     Comma separated list of foreign schemas.
-  TO       Comma separated list of local schemas.
-  INCLUDE  Only include named relations in import. Comma separated.
+  SERVER     Name of foreign server.
+  FROM       Comma separated list of foreign schemas.
+  TO         Comma separated list of local schemas.
+  [INCLUDE]  Only include named relations in import. Comma separated.
 
 FLAGS
   -h, --help  Show CLI help.
@@ -499,9 +499,9 @@ USAGE
   $ gc2 foreign materialize FROM [TO] [INCLUDE] [-h] [-p <value>] [-s <value>]
 
 ARGUMENTS
-  FROM     Comma separated list of source schemas.
-  TO       comma separated list of target schemas.
-  INCLUDE  only include named foreign tables. Comma separated.
+  FROM       Comma separated list of source schemas.
+  [TO]       comma separated list of target schemas.
+  [INCLUDE]  only include named foreign tables. Comma separated.
 
 FLAGS
   -h, --help            Show CLI help.
@@ -543,7 +543,7 @@ USAGE
   $ gc2 help [COMMAND...] [-n]
 
 ARGUMENTS
-  COMMAND...  Command to show help for.
+  [COMMAND...]  Command to show help for.
 
 FLAGS
   -n, --nested-commands  Include all nested commands in the output.
@@ -564,7 +564,7 @@ USAGE
     [-n <value>] [-h]
 
 ARGUMENTS
-  PATH  [default: .] Input path to file or folder.
+  [PATH]  [default: .] Input path to file or folder.
 
 FLAGS
   -T, --timestamp=<value>         Name of timestamp field. Create a timestamp field in the import table. Omit argument
@@ -599,10 +599,10 @@ USAGE
   $ gc2 index add [TABLE] [COLUMNS] [METHOD] [NAME] [-h]
 
 ARGUMENTS
-  TABLE    Name of table.
-  COLUMNS  Columns to index (comma separated).
-  METHOD   (btree|brin|gin|gist|hash) Index method.
-  NAME     Name of new index.
+  [TABLE]    Name of table.
+  [COLUMNS]  Columns to index (comma separated).
+  [METHOD]   (btree|brin|gin|gist|hash) Index method.
+  [NAME]     Name of new index.
 
 FLAGS
   -h, --help  Show CLI help.
@@ -622,8 +622,8 @@ USAGE
   $ gc2 index drop [TABLE] [NAME] [-h]
 
 ARGUMENTS
-  TABLE  Name of table.
-  NAME   Name of index.
+  [TABLE]  Name of table.
+  [NAME]   Name of index.
 
 FLAGS
   -h, --help  Show CLI help.
@@ -643,8 +643,8 @@ USAGE
   $ gc2 index get [TABLE] [NAME] [-h]
 
 ARGUMENTS
-  TABLE  Name of table.
-  NAME   Name of index.
+  [TABLE]  Name of table.
+  [NAME]   Name of index.
 
 FLAGS
   -h, --help  Show CLI help.
@@ -703,7 +703,7 @@ USAGE
   $ gc2 privilege get [TABLE] [-h]
 
 ARGUMENTS
-  TABLE  Name of table.
+  [TABLE]  Name of table.
 
 FLAGS
   -h, --help  Show CLI help.
@@ -723,9 +723,9 @@ USAGE
   $ gc2 privilege set [TABLE] [USER] [PRIVILEGE] [-h]
 
 ARGUMENTS
-  TABLE      Name of table.
-  USER       Name of user.
-  PRIVILEGE  Which privilege.
+  [TABLE]      Name of table.
+  [USER]       Name of user.
+  [PRIVILEGE]  Which privilege.
 
 FLAGS
   -h, --help  Show CLI help.
@@ -772,7 +772,7 @@ USAGE
   $ gc2 rule drop [ID] [-h]
 
 ARGUMENTS
-  ID  Id of rule
+  [ID]  Id of rule
 
 FLAGS
   -h, --help  Show CLI help.
@@ -792,7 +792,7 @@ USAGE
   $ gc2 rule get [ID] [-h]
 
 ARGUMENTS
-  ID  Rule id
+  [ID]  Rule id
 
 FLAGS
   -h, --help  Show CLI help.
@@ -813,7 +813,7 @@ USAGE
     <value>] [-a <value>] [-f <value>] [-h]
 
 ARGUMENTS
-  ID  Rule id.
+  [ID]  Rule id.
 
 FLAGS
   -a, --access=<value>    Access
@@ -842,8 +842,9 @@ USAGE
   $ gc2 scheduler start JOB [INCLUDE] [-h] [-n <value>] [-f]
 
 ARGUMENTS
-  JOB      Job id to start. Can also be a schema name and all jobs for that schema will be started.
-  INCLUDE  Only include jobs for named tables. Comma separated. Will only have effect if schema is used in "job" option.
+  JOB        Job id to start. Can also be a schema name and all jobs for that schema will be started.
+  [INCLUDE]  Only include jobs for named tables. Comma separated. Will only have effect if schema is used in "job"
+             option.
 
 FLAGS
   -f, --force         Force table to be recreated.
@@ -882,7 +883,7 @@ USAGE
   $ gc2 schema add [SCHEMA] [-h]
 
 ARGUMENTS
-  SCHEMA  Name of new schema.
+  [SCHEMA]  Name of new schema.
 
 FLAGS
   -h, --help  Show CLI help.
@@ -902,7 +903,7 @@ USAGE
   $ gc2 schema drop [SCHEMA] [-h]
 
 ARGUMENTS
-  SCHEMA  Name of schema.
+  [SCHEMA]  Name of schema.
 
 FLAGS
   -h, --help  Show CLI help.
@@ -922,7 +923,7 @@ USAGE
   $ gc2 schema get [SCHEMA] [-h]
 
 ARGUMENTS
-  SCHEMA  Name of schema.
+  [SCHEMA]  Name of schema.
 
 FLAGS
   -h, --help  Show CLI help.
@@ -942,8 +943,8 @@ USAGE
   $ gc2 schema rename [SCHEMA] [NAME] [-h]
 
 ARGUMENTS
-  SCHEMA  Name of schema.
-  NAME    New name for schema.
+  [SCHEMA]  Name of schema.
+  [NAME]    New name for schema.
 
 FLAGS
   -h, --help  Show CLI help.
@@ -1102,7 +1103,7 @@ USAGE
   $ gc2 table add [TABLE] [-h]
 
 ARGUMENTS
-  TABLE  Name of table.
+  [TABLE]  Name of table.
 
 FLAGS
   -h, --help  Show CLI help.
@@ -1122,7 +1123,7 @@ USAGE
   $ gc2 table drop [TABLE] [-h]
 
 ARGUMENTS
-  TABLE  Name of table.
+  [TABLE]  Name of table.
 
 FLAGS
   -h, --help  Show CLI help.
@@ -1142,7 +1143,7 @@ USAGE
   $ gc2 table get [TABLE] [-h]
 
 ARGUMENTS
-  TABLE  Name of table.
+  [TABLE]  Name of table.
 
 FLAGS
   -h, --help  Show CLI help.
@@ -1162,8 +1163,8 @@ USAGE
   $ gc2 table move [TABLE] [DESTINATION] [-h]
 
 ARGUMENTS
-  TABLE        Name of table.
-  DESTINATION  Destination schema.
+  [TABLE]        Name of table.
+  [DESTINATION]  Destination schema.
 
 FLAGS
   -h, --help  Show CLI help.
@@ -1183,8 +1184,8 @@ USAGE
   $ gc2 table rename [TABLE] [NAME] [-h]
 
 ARGUMENTS
-  TABLE  Name of table.
-  NAME   New name for table.
+  [TABLE]  Name of table.
+  [NAME]   New name for table.
 
 FLAGS
   -h, --help  Show CLI help.
@@ -1204,7 +1205,7 @@ USAGE
   $ gc2 user add [NAME] [-h] [-p <value>] [-e <value>] [-e <value>] [-d]
 
 ARGUMENTS
-  NAME  Name of new user
+  [NAME]  Name of new user
 
 FLAGS
   -d, --default_user        The default user is the user that is used when no token is provided. Use for public
@@ -1229,7 +1230,7 @@ USAGE
   $ gc2 user drop [NAME] [-h]
 
 ARGUMENTS
-  NAME  Name of user to drop.
+  [NAME]  Name of user to drop.
 
 FLAGS
   -h, --help  Show CLI help.
@@ -1249,7 +1250,7 @@ USAGE
   $ gc2 user get [ID] [-h]
 
 ARGUMENTS
-  ID  User id
+  [ID]  User id
 
 FLAGS
   -h, --help  Show CLI help.
@@ -1329,8 +1330,8 @@ USAGE
   $ gc2 view refresh SCHEMAS [INCLUDE] [-h]
 
 ARGUMENTS
-  SCHEMAS  Comma separated list of schemas.
-  INCLUDE  Only include named views in restore. Comma separated.
+  SCHEMAS    Comma separated list of schemas.
+  [INCLUDE]  Only include named views in restore. Comma separated.
 
 FLAGS
   -h, --help  Show CLI help.
@@ -1350,9 +1351,9 @@ USAGE
   $ gc2 view restore FROM [TO] [INCLUDE] [-h]
 
 ARGUMENTS
-  FROM     Comma separated list of source schemas.
-  TO       Comma separated list of target schemas.
-  INCLUDE  Only include named views in restore. Comma separated.
+  FROM       Comma separated list of source schemas.
+  [TO]       Comma separated list of target schemas.
+  [INCLUDE]  Only include named views in restore. Comma separated.
 
 FLAGS
   -h, --help  Show CLI help.
