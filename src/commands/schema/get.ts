@@ -7,7 +7,7 @@
 
 import {Args, Command, Flags, ux} from '@oclif/core'
 import {exit} from '@oclif/core/lib/errors'
-import cli from 'cli-ux'
+import {simpletable} from '../../util/simpletable'
 import {schemas} from '../../util/getters'
 import {schemasList} from '../../util/lists'
 
@@ -48,7 +48,7 @@ export default class Get extends Command {
 
       })
     }
-    cli.table(data, columns, {
+    simpletable(data, columns, {
       printLine: this.log.bind(this)
     })
   }
