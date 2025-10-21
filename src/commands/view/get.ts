@@ -6,7 +6,7 @@
  */
 
 import {Args, Command, Flags} from '@oclif/core'
-import cli from 'cli-ux'
+import {simpletable} from '../../util/simpletable'
 import make from '../../util/make-request'
 import get from '../../util/get-response'
 
@@ -48,7 +48,7 @@ export default class Get extends Command {
         ismat: v.ismat,
       })
     }
-    cli.table(data, columns, {
+    simpletable(data, columns, {
       printLine: this.log.bind(this)
     })
   }

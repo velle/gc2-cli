@@ -7,6 +7,7 @@
 
 import {Command, Flags} from '@oclif/core'
 import cli from 'cli-ux'
+import {simpletable} from '../util/simpletable'
 import get from '../util/get-response'
 import make from '../util/make-request'
 
@@ -53,7 +54,7 @@ export default class Stat extends Command {
     }
     this.log('Number of tables: ' + data.number_of_tables )
     this.log('Total size of all tables: ' + data.total_size )
-    cli.table(rows, tables, {
+    simpletable(rows, tables, {
       printLine: this.log.bind(this)
     })
   }

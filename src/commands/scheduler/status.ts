@@ -7,7 +7,7 @@
 
 import {Command, Flags} from '@oclif/core'
 import {exit} from '@oclif/core/lib/errors'
-import cli from 'cli-ux'
+import {simpletable} from '../../util/simpletable'
 import get from '../../util/get-response'
 import make from '../../util/make-request'
 
@@ -38,7 +38,7 @@ export default class Start extends Command {
           name: v.name || '-',
         })
       }
-      cli.table(data, columns, {
+      simpletable(data, columns, {
         printLine: this.log.bind(this)
       })
     } else {

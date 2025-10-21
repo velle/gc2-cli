@@ -7,6 +7,7 @@
 
 import {Args, Command, Flags} from '@oclif/core'
 import cli from 'cli-ux'
+import {simpletable} from '../util/simpletable'
 import AdmZip from 'adm-zip'
 import Configstore from 'configstore'
 import * as os from 'os'
@@ -165,7 +166,7 @@ export default class Import extends Command {
       }
       //  cli.action.stop()
       this.log('')
-      cli.table(rows, tables, {
+      simpletable(rows, tables, {
         printLine: this.log.bind(this)
       })
     } catch (e) {

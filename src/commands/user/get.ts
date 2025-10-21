@@ -6,7 +6,7 @@
  */
 
 import {Args, Command, Flags, ux} from '@oclif/core'
-import cli from 'cli-ux'
+import {simpletable} from '../../util/simpletable'
 import {users} from '../../util/getters'
 
 const specific_args = {
@@ -44,6 +44,6 @@ export default class Get extends Command {
         default_user: v.default_user,
       })
     }
-    cli.table(data, rows, {printLine: this.log.bind(this)})
+    simpletable(data, rows, {printLine: this.log.bind(this)})
   }
 }

@@ -9,6 +9,7 @@ import {Command, Flags} from '@oclif/core'
 import base64url from 'base64url'
 import chalk from 'chalk'
 import cli from 'cli-ux'
+import {simpletable} from '../util/simpletable'
 import * as fs from 'fs'
 import get from '../util/get-response'
 import make from '../util/make-request'
@@ -138,7 +139,7 @@ export default class Sql extends Command {
           data.features.forEach((e: { type: string, geometry: object, properties: any }) => {
             features.push(e.properties)
           })
-          cli.table(features, columns)
+          simpletable(features, columns)
         }
       }
     }

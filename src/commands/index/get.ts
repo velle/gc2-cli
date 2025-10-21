@@ -6,7 +6,7 @@
  */
 
 import {Args, Command, Flags} from '@oclif/core'
-import cli from 'cli-ux'
+import {simpletable} from '../../util/simpletable'
 import args from '../../common/base_args'
 import get from '../../util/get-response'
 import {schemasList, tableList, indexList} from '../../util/lists'
@@ -51,7 +51,7 @@ export default class Get extends Command {
     if (res?.columns) props.push({prop: 'Columns', value: (Array.isArray(res.columns) ? res.columns.join(', ') : res.columns)})
     if (res?.unique !== undefined) props.push({prop: 'Unique', value: res.unique})
 
-    cli.table(props, rows, {
+    simpletable(props, rows, {
       printLine: this.log.bind(this)
     })
   }

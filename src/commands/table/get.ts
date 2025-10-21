@@ -7,7 +7,7 @@
 
 import {Command, Flags, ux} from '@oclif/core'
 import chalk from 'chalk'
-import cli from 'cli-ux'
+import {simpletable} from '../../util/simpletable'
 import args from '../../common/base_args'
 import {tables} from '../../util/getters'
 import {schemasList, tableList} from '../../util/lists'
@@ -68,7 +68,7 @@ export default class Get extends Command {
         checks: v._checks ? v._checks.join(', ') : '',
       })
     }
-    cli.table(data, columns, {
+    simpletable(data, columns, {
       printLine: this.log.bind(this),
       ...flags
     })
