@@ -6,7 +6,7 @@
  */
 
 import {input, password, select} from '@inquirer/prompts'
-import {Command, Flags} from '@oclif/core'
+import {Command, Flags, ux} from '@oclif/core'
 import {exit} from '@oclif/core/lib/errors'
 import chalk from 'chalk'
 import ora from 'ora'
@@ -157,7 +157,7 @@ export default class Login extends Command {
       }
     })
       .listen(port)
-    await cli.anykey('Press any key to open GC2 in your browser')
+    await input({message: 'Press Enter to open GC2 in your browser'});
     await cli.open(authorizationCodeURL)
     const spinner = ora('Waiting for authentication').start()
     const {code, state: stateFromParams} = await waitFor<AuthoricationCodeCallbackParams>(eventName, emmiter)
