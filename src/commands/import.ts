@@ -99,7 +99,7 @@ export default class Import extends Command {
       tmpPath = tmpDir + '/' + tmpFile
 
       if (inputPath.split('.').reverse()[0].toLowerCase() === 'zip') {
-        fs.renameSync( inputPath, tmpPath)
+        fs.cpSync( inputPath, tmpPath)
       } else {
         const spinner = ora('Compressing files').start()
         await this.createZipArchive(inputPath, tmpPath)
