@@ -5,7 +5,6 @@
  *
  */
 
-import {logToStderr} from '@oclif/core/lib/cli-ux'
 import {exit} from '@oclif/core/lib/errors'
 import chalk from 'chalk'
 import Configstore from 'configstore'
@@ -25,7 +24,7 @@ const make = async (version: string, resource: string, method: Method, payload?:
   // We check is token needs refreshing
   if (checkConnection && isTokenExpired(user.token)) {
     if (isTokenExpired(user.refresh_token)) {
-      logToStderr('⚠️ Refresh token has expired. Please login again')
+      console.error('⚠️ Refresh token has expired. Please login again')
       exit(1)
     }
     const keycloakService = new Gc2Service()
@@ -34,7 +33,7 @@ const make = async (version: string, resource: string, method: Method, payload?:
       config.set({token: data.access_token})
       headers.Authorization = 'Bearer ' + data.access_token
     } catch (e) {
-      logToStderr('⚠️ Could not get refresh token')
+      console.error('⚠️ Could not get refresh token')
       exit(1)
     }
   }

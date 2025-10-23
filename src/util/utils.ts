@@ -1,4 +1,3 @@
-import {logToStderr} from '@oclif/core/lib/cli-ux'
 import {exit} from '@oclif/core/lib/errors'
 import chalk from 'chalk'
 import * as crypto from 'crypto'
@@ -101,6 +100,6 @@ export const passwordIsStrongEnough = (password: string, allowNull: boolean = fa
 }
 
 export const noLogin = () => {
-  logToStderr(chalk.red("You're not logged in. Please use the 'login' command."))
+  console.error(chalk.red("You're not logged in. Please use the 'login' command."))
   exit(1)
 }
