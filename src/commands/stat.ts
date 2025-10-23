@@ -6,7 +6,7 @@
  */
 
 import {Command, Flags} from '@oclif/core'
-import cli from 'cli-ux'
+import ora from 'ora'
 import {simpletable} from '../util/simpletable'
 import get from '../util/get-response'
 import make from '../util/make-request'
@@ -18,12 +18,21 @@ export default class Stat extends Command {
   }
   async run() {
    // const {flags} = await this.parse(Stat)
-    cli.action.start('Collecting statistics ')
-    const response = await make('4', `stats`, 'GET')
-    const data  = await get(response, 200)
-    cli.action.stop('done')
-    this.log('')
+    const spinner = ora('Collecting statistics').start()
+    let data!: any // definite assignment: we assign it in try or throw
 
+    try {
+
+      const response = await make('4', 'stats', 'GET')
+      data = await get(response, 200)
+      spinner.succeed('done')
+      this.log('')
+    } catch (err) {
+      spinner.fail('failed')
+      throw err
+    } finally {
+      if (spinner.isSpinning) spinner.stop()
+    }
     //console.log(data)
     type tables = {
       [key: string]: any

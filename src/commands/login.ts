@@ -9,6 +9,7 @@ import {input, password, select} from '@inquirer/prompts'
 import {Command, Flags} from '@oclif/core'
 import {exit} from '@oclif/core/lib/errors'
 import chalk from 'chalk'
+import ora from 'ora'
 import cli from 'cli-ux'
 import Configstore from 'configstore'
 import * as http from 'http'
@@ -115,8 +116,8 @@ export default class Login extends Command {
     config.set({token: data.access_token})
     config.set({refresh_token: data.refresh_token})
     config.set({superUser})
-    cli.action.start(`Signing with ${chalk.yellow(user)}`)
-    cli.action.stop(chalk.green('success'))
+    const spinner = ora(`Signing with ${chalk.yellow(user)}`).start()
+    spinner.succeed(chalk.green('success'))
   }
 
   private async startPasswordFlow(user: string, password: string, database: string): Promise<any> {
@@ -158,12 +159,14 @@ export default class Login extends Command {
       .listen(port)
     await cli.anykey('Press any key to open GC2 in your browser')
     await cli.open(authorizationCodeURL)
-    cli.action.start('Waiting for authentication')
+    const spinner = ora('Waiting for authentication').start()
     const {code, state: stateFromParams} = await waitFor<AuthoricationCodeCallbackParams>(eventName, emmiter)
     if (stateFromParams !== state) {
+      spinner.fail('failed')
       throw new Error('Possible CSRF attack. Aborting login! ⚠️')
     }
     const {access_token, refresh_token} = await keycloakService.getAuthorizationCodeToken(code, codeVerifier)
+    spinner.succeed('done')
     return {
       access_token: access_token,
       refresh_token: refresh_token,
@@ -176,14 +179,16 @@ export default class Login extends Command {
     console.log(device_code)
     this.log(`First copy your one-time code: ${user_code}`)
     this.log('When open a browser at ' + verification_uri)
-    cli.action.start('Waiting for authentication')
+    const spinner = ora('Waiting for authentication').start()
     try {
       const {access_token, refresh_token} = await keycloakService.poolToken(device_code, interval)
+      spinner.succeed('done')
       return {
         access_token: access_token,
         refresh_token: refresh_token,
       }
     } catch (e: any) {
+      spinner.fail('failed')
       this.log(`⚠️ ` + e.message)
       exit(1)
     }

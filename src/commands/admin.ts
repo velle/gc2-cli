@@ -7,7 +7,7 @@
 
 import {Command, Flags} from '@oclif/core'
 import chalk from 'chalk'
-import cli from 'cli-ux'
+import ora from 'ora'
 import get from '../util/get-response'
 import make from '../util/make-request'
 import {adminTaskList} from "../util/lists";
@@ -26,14 +26,14 @@ export default class Admin extends Command {
   async run() {
     const {flags} = await this.parse(Admin)
     const task = flags?.task || await adminTaskList()
-    cli.action.start('Running task')
+    const spinner = ora('Running task').start()
     const response = await make('3', `admin/${task}`, 'GET', null)
     const data = await get(response, 200)
     if (!data.success) {
       this.log(data.message)
       this.exit(1)
     }
-    cli.action.stop('')
+    spinner.succeed()
     // report
     switch (task) {
       case tasks[0]:

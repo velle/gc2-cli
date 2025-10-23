@@ -6,7 +6,7 @@
  */
 
 import {Args, Command, Flags} from '@oclif/core'
-import cli from 'cli-ux'
+import ora from 'ora'
 import {simpletable} from '../util/simpletable'
 import AdmZip from 'adm-zip'
 import Configstore from 'configstore'
@@ -101,12 +101,12 @@ export default class Import extends Command {
       if (inputPath.split('.').reverse()[0].toLowerCase() === 'zip') {
         fs.renameSync( inputPath, tmpPath)
       } else {
-        cli.action.start('Compressing files')
+        const spinner = ora('Compressing files').start()
         await this.createZipArchive(inputPath, tmpPath)
-        cli.action.stop()
+        spinner.succeed('done')
       }
 
-      cli.action.start('Uploading')
+      const spinner = ora('Uploading').start()
       const file = fs.readFileSync(tmpPath)
       const stats = fs.statSync(tmpPath)
       const fileSizeInBytes: number = stats.size
@@ -125,7 +125,7 @@ export default class Import extends Command {
         await get(res, 201)
         chunkCount++
       }
-      cli.action.stop()
+      spinner.succeed('done')
 
       const body: any = flags
       if (!flags.dry_run) {

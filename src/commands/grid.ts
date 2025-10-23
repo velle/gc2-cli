@@ -1,6 +1,6 @@
 import {Command, Flags} from '@oclif/core'
 import chalk from 'chalk'
-import cli from 'cli-ux'
+import ora from 'ora'
 import get from '../util/get-response'
 import make from '../util/make-request'
 
@@ -14,10 +14,10 @@ export default class Grid extends Command {
   }
   async run() {
     const {flags} = await this.parse(Grid)
-    cli.action.start('Creating fishnet grid ')
+    const spinner = ora('Creating fishnet grid ').start()
     const response = await make('3', `grid`, 'POST', flags)
     const data  = await get(response, 200)
-    cli.action.stop('')
+    spinner.stop()
     if (data.success) {
       this.log(chalk.green('SUCCESS: Fishnet grid was created.'))
     } else {
