@@ -5,10 +5,9 @@
  *
  */
 
-import {Command, Flags} from '@oclif/core'
+import {Command, Flags, ux} from '@oclif/core'
 import base64url from 'base64url'
 import chalk from 'chalk'
-import cli from 'cli-ux'
 import {simpletable} from '../util/simpletable'
 import * as fs from 'fs'
 import get from '../util/get-response'
@@ -108,7 +107,7 @@ export default class Sql extends Command {
     } else {
       // tslint:disable-next-line:no-constant-condition
       while (true) {
-        const sql = await cli.prompt('')
+        const sql = await ux.prompt('')
         const statement: Statement = {
           q: base64url(sql),
           srs: 4326,
