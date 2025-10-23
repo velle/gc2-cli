@@ -10,10 +10,10 @@ import {Command, Flags, ux} from '@oclif/core'
 import {exit} from '@oclif/core/lib/errors'
 import chalk from 'chalk'
 import ora from 'ora'
-import cli from 'cli-ux'
 import Configstore from 'configstore'
 import * as http from 'http'
 import * as querystring from 'querystring'
+import open from 'open';
 
 import User from '../common/user'
 import {Gc2Service} from '../services/gc2.service'
@@ -158,7 +158,7 @@ export default class Login extends Command {
     })
       .listen(port)
     await input({message: 'Press Enter to open GC2 in your browser'});
-    await cli.open(authorizationCodeURL)
+    await open(authorizationCodeURL)
     const spinner = ora('Waiting for authentication').start()
     const {code, state: stateFromParams} = await waitFor<AuthoricationCodeCallbackParams>(eventName, emmiter)
     if (stateFromParams !== state) {
