@@ -12,7 +12,6 @@ import AdmZip from 'adm-zip'
 import Configstore from 'configstore'
 import * as os from 'os'
 import {v4 as uuidv4} from 'uuid'
-import FormData from 'form-data'
 import * as fs from 'fs'
 import * as path from 'path'
 import User from '../common/user'
@@ -115,13 +114,14 @@ export default class Import extends Command {
       let chunkCount = 0
       for (let start = 0; start < fileSizeInBytes; start += chunkSize) {
         const form = new FormData()
-        const chunk = file.slice(start, start + chunkSize)
-        form.append('chunk', chunkCount)
-        form.append('chunks', chunks)
-        form.append('filename', chunk, {
-          filename: tmpFile
-        })
+
+        form.append('chunk', String(chunkCount));
+        form.append('chunks', String(chunks));
+        const chunk = file.slice(start, start + chunkSize);
+        form.append('filename', new File([chunk], tmpFile));
+
         const res = await make('4', `import/${schema}`, 'POST', form, true, null)
+
         await get(res, 201)
         chunkCount++
       }
